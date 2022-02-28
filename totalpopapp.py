@@ -2,11 +2,11 @@ from numpy import int64
 from dash import Dash, dcc, html, Output, Input
 import plotly.express as px
 import pandas as pd
-import folium
+import json
 
-df = pd.read_csv('formatted_totalpopulation.csv')
-# df.astype({'year': 'int64'})
+df = pd.read_csv('format_totalpop.csv')
 df['year'] = df['year'].astype('int64')
+
 
 app = Dash(__name__)
 
@@ -33,7 +33,7 @@ app.layout = html.Div(children=[
 def update_figure(year_slider):
     filtered_df = df[df.year == year_slider]
 
-    fig = px.choropleth(filtered_df, locations='name', color='Avg Life Expectancy',
+    fig = px.choropleth(filtered_df, locations=df.name, color='Avg Life Expectancy',
                         color_continuous_scale="Viridis",
                         range_color=(0, 12),
                         labels={'Avg Life Expectancy': 'Life Expectancy'}
