@@ -31,9 +31,9 @@ app.layout = html.Div(children=[
     Output('graph-with-slider', 'figure'),
     Input('year_slider', 'value'))
 def update_figure(year_slider):
-    filtered_df = df[df.year == year_slider]
+    filtered_df = df[df.year == year_slider].copy()
 
-    fig = px.choropleth(filtered_df, locations=df.name, color='Avg Life Expectancy',
+    fig = px.choropleth(filtered_df, locations=filtered_df.name, geojson=filtered_df.geometry, color='Avg Life Expectancy',
                         color_continuous_scale="Viridis",
                         range_color=(0, 12),
                         labels={'Avg Life Expectancy': 'Life Expectancy'}
