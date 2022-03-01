@@ -3,6 +3,7 @@ from dash import Dash, dcc, html, Output, Input
 import plotly.express as px
 import pandas as pd
 import json
+import plotly.graph_objs as go
 
 df = pd.read_csv('format_totalpop.csv')
 df['year'] = df['year'].astype('int64')
@@ -33,13 +34,18 @@ app.layout = html.Div(children=[
 def update_figure(year_slider):
     filtered_df = df[df.year == year_slider].copy()
 
-    fig = px.choropleth(filtered_df, locations=filtered_df.name, geojson=filtered_df.geometry, color='Avg Life Expectancy',
-                        color_continuous_scale="Viridis",
-                        range_color=(0, 12),
-                        labels={'Avg Life Expectancy': 'Life Expectancy'}
-                        )
-    fig.update_layout(margin={"r": 0, "t": 0, "l": 0, "b": 0})
-    return fig
+    data = dict(type='choropleth',
+                locations=filtered_df['name'],
+                locationmode='country names',
+                text=filtered_df['name'],
+                z=filtered_df['Avg Life Expectancy'],
+                )
+    layout = dict(geo=dict(scope='world',
+                           showlakes=False)
+                  )
+
+    choromap = go.Figure(data=[data], layout=layout)
+    return choromap
 
 
 if __name__ == '__main__':
