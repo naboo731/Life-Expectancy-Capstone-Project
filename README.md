@@ -32,14 +32,6 @@ Data was sourced from the WHO (https://www.who.int/data/gho/data/themes/topics/i
 -Females have higher life expectancies than males do in all countries. <br>
 <br>
 <br>
-<h3> 
-
-<h3> Visualizations </h3><br>
-  Total Population Life Expectancy Changes Around the World from 1960 to 2019
-https://user-images.githubusercontent.com/93614675/157290152-2b925bf2-6efc-45d5-b8df-2049456a0bf4.mp4
-  <br>
-  ![male vs female axis](https://user-images.githubusercontent.com/93614675/157290569-841d1638-be24-47f6-9508-ca0f0745ec31.png)
-
   
 
 
